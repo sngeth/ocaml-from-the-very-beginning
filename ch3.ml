@@ -14,7 +14,9 @@ let rec sum n =
 (* Use pattern matching to write a function which, given two numbers x and n, computes x^n *)
 let pow x n =
   match n with
-    _ -> x ** n
+    0 -> 1
+  | 1 -> x
+  | _ -> x * pow x (n-1)
 
 
 (* There is a special patern x..y to denote continuous ranges of characters,

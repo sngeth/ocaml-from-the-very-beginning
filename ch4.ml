@@ -1,4 +1,4 @@
-(* Write a function evens which does the opposite to odds, returning the even numbered
+(* 1. Write a function evens which does the opposite to odds, returning the even numbered
  * elements in a list. For example, evens[2; 4; 2; 4; 2] should return [4; 4]. What is the
  * type of your function?
  *)
@@ -7,10 +7,10 @@
 let rec evens l =
   match l with
    [] -> []
-  | [a] -> []
+  | [_] -> []
   | _::a::t -> a :: evens t
 
-(* Write a function count_true which counts the number of true elements in a list.
+(* 2. Write a function count_true which counts the number of true elements in a list.
  * For example, count_true [true; false; true] should return 2. What is the type of your
  * function? Can you write a tail recursive function?
  *)
@@ -23,3 +23,45 @@ let rec _count_true l n =
   | false::t -> _count_true t n
 
 let count_true l = _count_true l 0
+
+(* 3. Write a function which, given a list, builds a palindrome from it. A palindrome is a list which equals
+ * its own reverse. You can assume the existence of rev and @. Write another fuction which determins if a list
+ * is a palindrome *)
+
+let make_palindrome l =
+  l @ rev l
+
+let is_palindrome l =
+  l = rev l
+
+(* 4. Write a function drop_last which returns all but the last element
+ * of a list. If the list is empty, it should return the empty list.
+ * So for example, drop_last [1; 2; 4; 8] should return [1; 2; 4].
+ * What about a tail recursive version?
+ *)
+
+let rec drop_last l =
+  match l with
+    []   -> []
+  | [_]  -> []
+  | h::t -> h :: drop_last l
+
+(* tail recursive function of drop_last *)
+let rec _drop_last a l =
+  match l with
+    [] -> rev a
+  | [] -> rev a
+  | h::t -> _drop_last (h::a) t
+
+let drop_last l =
+  _drop_last [] l
+
+(* 5. Write a function member of type a -> a list -> bool which returns
+ * true if an element exists in a list, or false if not. For example,
+ * member 2 [1; 2; 3] should evaluate to true, but member 3 [1; 2]
+ * should evaluate to false. *)
+
+let member e l =
+  match l with
+    [] -> false
+  | h::t -> h = e || member e t
