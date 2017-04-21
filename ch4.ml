@@ -1,6 +1,6 @@
-(* 1. Write a function evens which does the opposite to odds, returning the even numbered
- * elements in a list. For example, evens[2; 4; 2; 4; 2] should return [4; 4]. What is the
- * type of your function?
+(* 1. Write a function evens which does the opposite to odds, returning the even
+ * numbered elements in a list. For example, evens[2; 4; 2; 4; 2] should return
+ * [4; 4]. What is the type of your function?
  *)
 
 (* [a] -> [a] *)
@@ -10,9 +10,9 @@ let rec evens l =
   | [_] -> []
   | _::a::t -> a :: evens t
 
-(* 2. Write a function count_true which counts the number of true elements in a list.
- * For example, count_true [true; false; true] should return 2. What is the type of your
- * function? Can you write a tail recursive function?
+(* 2. Write a function count_true which counts the number of true elements in a
+ * list. For example, count_true [true; false; true] should return 2. What is the
+ * type of your function? Can you write a tail recursive function?
  *)
 
 (* [bool] -> int *)
@@ -24,8 +24,9 @@ let rec _count_true l n =
 
 let count_true l = _count_true l 0
 
-(* 3. Write a function which, given a list, builds a palindrome from it. A palindrome is a list which equals
- * its own reverse. You can assume the existence of rev and @. Write another fuction which determins if a list
+(* 3. Write a function which, given a list, builds a palindrome from it.
+ * A palindrome is a list which equals its own reverse. You can assume the
+ * existence of rev and @. Write another fuction which determins if a list
  * is a palindrome *)
 
 let make_palindrome l =
@@ -65,3 +66,14 @@ let member e l =
   match l with
     [] -> false
   | h::t -> h = e || member e t
+
+(* 6. Use your member function to write a function make_Set which, given a list,
+ * returns a list which contains all the elements of the original list, but has
+ * no duplicate elements. For example, make_set[1; 2; 3; 3; 1] might return
+ * [2; 3; 1]. What is the type of your function? *)
+
+(* [int] -> [int] *)
+let rec _make_set l new_list =
+  match l with
+    [] -> []
+  | h::t -> if member h t then make_set t else h :: make_set t
