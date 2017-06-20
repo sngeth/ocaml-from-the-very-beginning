@@ -20,3 +20,19 @@ let rec msort l =
         let left = take x l in
           let right = drop x l in
             merge (msort left) (msort right)
+
+(* 3. Write a version of insertion sort which sorts the argument list into reverse order
+ * We just need to flip the comparison operator. *)
+
+let rec insert x l =
+  match l with
+    [] -> [x]
+  | h::t ->
+      if x >= h
+        then x :: h :: t
+        else h :: insert x t
+
+let rec sort l =
+  match l with
+    [] -> []
+  | h::t -> insert h (sort t)
