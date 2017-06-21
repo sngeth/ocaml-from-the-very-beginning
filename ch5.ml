@@ -36,3 +36,9 @@ let rec sort l =
   match l with
     [] -> []
   | h::t -> insert h (sort t)
+
+(* 4. Write a function to detect if a list is already sorted *)
+let rec is_sorted l =
+  match l with
+    a::b::t -> a <= b && is_sorted(b::t)
+  | _ -> true
