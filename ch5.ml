@@ -42,3 +42,18 @@ let rec is_sorted l =
   match l with
     a::b::t -> a <= b && is_sorted(b::t)
   | _ -> true
+
+(* 5. Combine the sort and insert functions into a single sort function *)
+
+let rec sort l =
+  let rec insert x s =
+    match s with
+      [] -> [x]
+    | h::t ->
+        if x <= h
+        then x :: h :: t
+        else h::insert x t
+  in
+    match l with
+      [] -> []
+    | h::t -> insert h (sort t)
