@@ -1,7 +1,9 @@
-(* 1. Write a simple recursive function calm to replace exclamation marks in a char list with periods.
- * For example calm ['H'; 'e'; 'l'; 'p'; '!'; ' '; 'F'; 'i'; 'r'; 'e'; '!'] should evaluate to
- * calm ['H'; 'e'; 'l'; 'p'; '.'; ' '; 'F'; 'i'; 'r'; 'e'; '.'].
- * Now rewrite your function to use map instead of recursion. What are the types of your functions? *)
+(* 1. Write a simple recursive function calm to replace exclamation marks in a
+ * char list with periods. For example calm
+ * ['H'; 'e'; 'l'; 'p'; '!'; ' '; 'F'; 'i'; 'r'; 'e'; '!'] should evaluate to
+ * ['H'; 'e'; 'l'; 'p'; '.'; ' '; 'F'; 'i'; 'r'; 'e'; '.'].
+ * Now rewrite your function to use map instead of recursion.
+ * What are the types of your functions? *)
 
 let rec calm l =
   match l with
@@ -28,3 +30,10 @@ let clip x =
 
 let rec cliplist a_list =
   map clip a_list
+
+(* 3. Express your function cliplist again, this time using an anonymous function *)
+let rec cliplist a_list =
+  map (fun x ->
+        if x < 1 then 1 else
+          if x > 10 then 10 else x)
+  a_list
