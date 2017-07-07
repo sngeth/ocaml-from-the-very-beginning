@@ -37,3 +37,16 @@ let rec cliplist a_list =
         if x < 1 then 1 else
           if x > 10 then 10 else x)
   a_list
+
+
+(* Write a function apply which, given another function, a number of times to
+ * apply it, and an initial argument for the function, will return the cumulative
+ * effect of repeatedly applying the function. For instance, apply f 6 4 should
+ * return f (f (f (f (f (f 4)))))). What is the type of your function?
+ *
+ * apply : (a -> a) -> int a -> a -> a *)
+
+let rec apply f n x =
+  if n = 0
+    then x
+    else f (apply f (n - 1) x)
