@@ -70,3 +70,15 @@ let rec insert f x l =
    match l with
     [] -> []
   | h::t -> insert f h (sort f t)
+
+(* Write a function filter which takes a function of type a -> bool and a list
+ * and returns a list of just those elements of the argument list for which the
+ * given function returns true *)
+
+let rec filter f l =
+  match l with
+    [] -> []
+  | h::t ->
+      if f h
+        then h::filter f t
+        else filter f t
